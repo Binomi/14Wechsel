@@ -161,12 +161,68 @@ Versuchspartner & Michael Lohmann\\
 
 \section{Einleitung}
 \label{sec:einleitung}
-\cite{LP14} Hallo! Felix darf das hier nicht lesen!!!
+Bei diesem Versuch sollen induktive und kapazitive Widerstände und die damit verbundene Phasenverschiebung zwischen Strom und Spannung untersucht werden.
+%bla bla
+
 \section{Theorie}
 \label{sec:theorie}
+\subsection{Induktiver Widerstand}
+
+\begin{align}
+	X_L=i\omega L \,.
+\end{align}
+
+Außerdem besitzen Spulen meist einen nicht zu vernachlässigenden ohmschen Widerstand $R_L$, da sie aus sehr langem Draht bestehen.
+
+\subsection{Kapazitiver Widerstand}
+
+\begin{align}
+	X_C=-i\frac{1}{\omega C} \,.
+\end{align}
+
+\subsection{Impedanz und Zeigerdiagramm}
+Impedanz
+\begin{align}
+	Z=R+X_C+X_L \,.
+\end{align}
+Scheinwiderstand
+\begin{align}
+	|Z|=\sqrt{R^2+\left(\omega L - \frac{1}{\omega C}\right)^2} \,.
+\end{align}
+
+Minimaler Widerstand bei der Resonanzfrequenz
+\begin{align}
+	\omega_R=\sqrt{\frac{1}{LC}} \,.
+\end{align}
+
+\subsection{Parallelschaltung}
+
+\subsection{Effektivwerte}
+Als \textit{Effektivwert} eines Wechselstroms bezeichnet man den Wert, bei dem bei Gleichstrom die gleich Leistung abgegeben würde.
+Für eine Sinus-förmige Spannung der Amplitude $U_0$ ergibt sich somit
+\begin{align}
+	U_\text{eff}=\sqrt{\frac{1}{2}}\cdot U_0 \,.
+\end{align}
+Analoges gilt für den Strom.
+Vom Multimeter, welches Wechselstrom misst, wird der Effektivwert und nicht die Amplitude der Messgröße angezeigt.
                                                                                                                                                                       
 \section{Durchführung}
 \label{sec:durchfuehrung}
+
+Zuerst wird der \textbf{Serienresonanzkreis} aus Abb. \eqref{fig:serie} aufgebaut.
+Dabei wird das Oszilloskop so angeschlossen und eingestellt, dass die Phasenverschiebung zwischen Strom und Spannung abgelesen werden kann.
+Zur ersten Messung überbrückt man den Kondensator, indem man den Schalter schließt.
+Nun wird für mindestens 10 Frequenzen Spannung und Strom sowie dren Phasenverschiebung gemessen.
+Daraus kann man später die Induktivität der Spule sowie den ohmschen Widerstand berechnen.\\
+Die nächsten Messungen finden mit dem Kondensator statt, der Schalter wird also geöffnet.
+In Abhängigkeit der Frequenz werden jetzt der Strom $I$, die Spannung $U$ sowie die Teilspannungen $U_C$ und $U_{L+R}$ und die Phasenverschiebung $\varphi$ gemessen.
+Dabei sollen möglichst viele Messungen in der Nähe der Resonanzfrequenz $\omega_R$ durchgeführt werden.\\
+Als nächstes wird die Schaltung zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
+Wieder wird die Spannung und der Strom in Abhängigkeit der Frequenz gemessen.
+Hier liegt der Fokus wie zuvor auf der Resonanzfrequenz.\\
+
+Zum Schluss misst man mit dem Multimeter den Innenwiderstand des Amperemeters und die ohmschen Widerstände $R_\Omega$ sowie $R_L$.
+Außerdem werden die Kapazität des Kondensators gemessen und die Spulendaten notiert. 
 
 \section{Auswertung}
 \label{sec:auswertung}
@@ -223,19 +279,27 @@ Mittelwerte aus allen Daten:
 	\caption{Teilspannungen des Serienresonanzkreises}
 	\label{fig:teilU}
 \end{figure}
+
 \subsection{Parallelkreis}
-Aus Fit von Messung 3:
-\begin{align}
-R &= (68\pm 5)\si{\kilo\ohm}\\
-L &= (370 \pm 10)\si{\milli\henry}\\
-C &= (1.88  \pm 0.05) \si{\micro\farad}
-\end{align}
 \begin{figure}[!htb]
 	\centering
 	\input{messung3.tex}
 	\caption{Impedanz des Parallelkreises als Funktion der Kreisfrequenz}
 	\label{fig:messung3}
 \end{figure}
+
+Aus Fit von Messung 3:
+\begin{align}
+	R &= (68\pm 5)\si{\kilo\ohm}\\
+	L &= (370 \pm 10)\si{\milli\henry}\\
+	C &= (1.88  \pm 0.05) \si{\micro\farad}
+\end{align}
+
+Daraus ergibt sich eine Resonanzfrequenz
+\begin{align}
+	\omega_R=(1200 \pm 20)\,\si{\hertz} \,.
+\end{align}
+
 
 \section{Diskussion}
 \label{sec:diskussion}
