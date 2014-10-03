@@ -9,14 +9,17 @@
 % Für Kopf und Fußzeilen, siehe auch KOMA-Skript Doku
 \usepackage[komastyle]{scrpage2}
 \pagestyle{scrheadings}
-\setheadsepline{0.5pt}[\color{black}]
 \automark[section]{chapter}
+\setheadsepline{0.5pt}[\color{black}]
 
+%keine Einrückung
+\parindent0pt
 
 %Einstellungen für Figuren- und Tabellenbeschriftungen
 \setkomafont{captionlabel}{\sffamily\bfseries}
 \setcapindent{0em}
 
+\usepackage{caption}
 
 %---- Weitere Pakete -----------------------------------------------------------
 % Die Pakete sind alle in der TeX Live Distribution enthalten. Wichtige Adressen
@@ -30,7 +33,7 @@
 \usepackage[utf8]{inputenc}
 
 % Pakete mit Mathesymbolen und zur Beseitigung von Schwächen der Mathe-Umgebung
-\usepackage{latexsym,exscale,stmaryrd,amssymb,amsmath}
+\usepackage{latexsym,exscale,amssymb,amsmath}
 
 % Weitere Symbole
 \usepackage[nointegrals]{wasysym}
@@ -69,6 +72,7 @@
 %   \label{fig:label-gesamt}
 % \end{figure}
 \usepackage{subfigure}
+\usepackage{adjustbox}
 
 % Caption neben Abbildung
 % Beispiel:
@@ -83,11 +87,6 @@
 
 % Befehl für "Entspricht"-Zeichen
 \newcommand{\corresponds}{\ensuremath{\mathrel{\widehat{=}}}}
-% Befehl für Errorfunction
-\newcommand{\erf}[1]{\text{ erf}\ensuremath{\left( #1 \right)}}
-
-%Fußnoten zwingend auf diese Seite setzen
-\interfootnotelinepenalty=1000
 
 %Für chemische Formeln (von www.dante.de)
 %% Anpassung an LaTeX(2e) von Bernd Raichle
@@ -102,14 +101,25 @@
    \resetfontdimens}}
 \makeatother
 
-%Honecker-Kasten mit $$\shadowbox{$xxxx$}$$
-\usepackage{fancybox}
-
-%SI-Package
+%Si Einheiten
 \usepackage{siunitx}
 
-%keine Einrückung, wenn Latex doppelte Leerzeile
-\parindent0pt
+%c++ Code einbinden
+\usepackage{listings}
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt}
+
+%Differential
+\newcommand{\dif}{\ensuremath{\mathrm{d}}}
+
+%Boxen,etc.
+\usepackage{fancybox}
+\usepackage{empheq}
+
+%Fußnoten auf gleiche Seite
+\interfootnotelinepenalty=1000
+
+%Dateien aus Unterverzeichnissen
+\usepackage{import}
 
 %Bibliography \bibliography{literatur} und \cite{gerthsen}
 %\usepackage{cite}
@@ -127,8 +137,8 @@
 
 \rule{\textwidth}{1pt}\\[0.5cm]
 {\huge \bfseries
-  Wechselstromwiderstände\\[1.5ex]
-  Protokoll}\\[0.5cm]
+  14\\[1.5ex]
+  Wechselstromwiderstände}\\[0.5cm]
 \rule{\textwidth}{1pt}
 
 \vspace*{2.5cm}
@@ -136,7 +146,7 @@
 \begin{Large}
 \begin{tabular}{ll}
 Praktikant: & Felix Kurtz\\
-Versuchspartner & Michael Lohmann\\
+Versuchspartner: & Michael Lohmann\\
  E-Mail: &  felix.kurtz@stud.uni-goettingen.de\\
  Betreuer: & Björn Klaas\\
  Versuchsdatum: & 08.09.2014\\
@@ -148,7 +158,7 @@ Versuchspartner & Michael Lohmann\\
 \begin{Large}
 \fbox{
   \begin{minipage}[t][2.5cm][t]{6cm} 
-   eingegangen am:
+   Eingegangen am:
   \end{minipage}
 }
 \end{Large}
@@ -190,6 +200,12 @@ Scheinwiderstand
 	|Z|=\sqrt{R^2+\left(\omega L - \frac{1}{\omega C}\right)^2} \,.
 \end{align}
 
+Phasenverschiebung
+\begin{align}
+	\varphi=\arctan\left(\frac{\omega L - \frac{1}{\omega C}}{R} \right) \,.
+	\label{eq:phase_serie}
+\end{align}
+
 Minimaler Widerstand bei der Resonanzfrequenz
 \begin{align}
 	\omega_R=\sqrt{\frac{1}{LC}} \,.
@@ -208,6 +224,12 @@ Vom Multimeter, welches Wechselstrom misst, wird der Effektivwert und nicht die 
                                                                                                                                                                       
 \section{Durchführung}
 \label{sec:durchfuehrung}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{serie.png}
+	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
+	\label{fig:serie}
+\end{figure}
 
 Zuerst wird der \textbf{Serienresonanzkreis} aus Abb. \eqref{fig:serie} aufgebaut.
 Dabei wird das Oszilloskop so angeschlossen und eingestellt, dass die Phasenverschiebung zwischen Strom und Spannung abgelesen werden kann.
@@ -217,7 +239,16 @@ Daraus kann man später die Induktivität der Spule sowie den ohmschen Widerstan
 Die nächsten Messungen finden mit dem Kondensator statt, der Schalter wird also geöffnet.
 In Abhängigkeit der Frequenz werden jetzt der Strom $I$, die Spannung $U$ sowie die Teilspannungen $U_C$ und $U_{L+R}$ und die Phasenverschiebung $\varphi$ gemessen.
 Dabei sollen möglichst viele Messungen in der Nähe der Resonanzfrequenz $\omega_R$ durchgeführt werden.\\
-Als nächstes wird die Schaltung zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1.0]{parallel.png}
+	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
+	\label{fig:parallel}
+\end{figure}
+
+
+Als nächstes wird die Schaltung nach Abb. \eqref{fig:parallel} zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
 Wieder wird die Spannung und der Strom in Abhängigkeit der Frequenz gemessen.
 Hier liegt der Fokus wie zuvor auf der Resonanzfrequenz.\\
 
@@ -230,75 +261,107 @@ Außerdem werden die Kapazität des Kondensators gemessen und die Spulendaten no
 \begin{figure}[!htb]
 	\centering
 	\input{messung1.tex}
-	\caption{Quadrat der Impedanz als Funktion der Kreisfrequenz}
+	\caption{RL-Serienschaltung: Quadrat der Impedanz als Funktion der Kreisfrequenz.}
 	\label{fig:messung1}
 \end{figure}
+Trägt man das Quadrat der Impedanz gegen das der Kreisfrequenz auf, ergibt sich eine Gerade $Z^2=R^2+L^2\omega^2=b+m\cdot(\omega^2)$.
+Dies kann man in Abbildung \eqref{fig:messung1} erkennen.
+Um aus dem Ergebnis der linearen Regression $m$ und $b$ die Indukivität  $L$ sowie den ohmschen Widerstand $R$ zu berechnen, muss also die Wurzel gezogen werden.
+Der Fehler von $x=\sqrt{y}$ berechnet man mit der Formel $\sigma_x=\frac{\sigma_y}{2\sqrt{y}}$, welche aus der Gauss'schen  Fehlerfortpflanzung stammt.
 
+So erhält man aus $m = (0.1493 \pm 0.0005)\,\si{\ohm^2\per\hertz^2}$ und $b = (0.00597 \pm 0.00017)\,\si{(\kilo\ohm)^2}$ 
 \begin{align}
-	L&=(386.3\pm 0.6)\,\si{\milli\henry}\\
-	R_\text{ges}&=(77.3 \pm 1.1)\,\si{\ohm}
+	L&=(386.3\pm 0.6)\,\si{\milli\henry}\qquad \text{sowie}\\
+	R&=(77.3 \pm 1.1)\,\si{\ohm}\,.
 \end{align}
 \subsection{RLC-Serienschaltung}
 \begin{figure}[!htb]
 	\centering
 	\input{messung2.tex}
-	\caption{Impedanz des Serienresonanzkreis als Funktion der Kreisfrequenz}
+	\caption{Impedanz des Serienresonanzkreis als Funktion der Kreisfrequenz.}
 	\label{fig:messung2}
 \end{figure}
 Aus
 \begin{align}
-	R &= (80.9 \pm 0.5)\,\si{\ohm}\\
-	L &= (386.1 \pm 1.0)\,\si{\milli\henry}\\
-	C &= (1.799 \pm 0.005)\,\si{\micro\farad}
-\end{align}
-Mittelwerte aus allen Daten:
-\begin{align}
-\overline L&=(386.2 \pm 0.6)\si{\milli\henry}\\
-\overline R&=(80.2836 \pm 0.455183)\,\si{\ohm}
+	R &= (80.9 \pm 0.5)\,\si{\ohm}\,,\\
+	L &= (386.1 \pm 1.0)\,\si{\milli\henry}\qquad\text{und}\\
+	C &= (1.799 \pm 0.005)\,\si{\micro\farad}\,.
 \end{align}
 \begin{align}
-\omega_\text{LC}&=\frac{1}{\sqrt{LC}}\\
-\sigma_{\omega_\text{LC}}&=\frac{\sqrt{\frac{\sigma_{L}^{2}}{L^{2}} + \frac{\sigma_{C}^{2}}{C^{2}}}}{2 \cdot \sqrt{C} \cdot \sqrt{L}}\\
-\omega_\text{LC}&=(1199.9 \pm 2.3)\,\si{\hertz}
+	\omega_R&=\frac{1}{\sqrt{LC}}\,,\\
+	\sigma_{\omega_R}&=\frac{\sqrt{\frac{\sigma_{L}^{2}}{L^{2}} + \frac{\sigma_{C}^{2}}{C^{2}}}}{2 \cdot \sqrt{C} \cdot \sqrt{L}}\,.
 \end{align}
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1199.9 \pm 2.3)\,\si\hertz \,.
+\end{empheq}
+%Mittelwerte aus allen Daten:
+%\begin{align}
+%	\overline L&=(386.2 \pm 0.6)\si{\milli\henry}
+%\end{align}
+
 \begin{figure}[!htb]
 	\centering
 	\input{phase.tex}
-	\caption{Phasenverschiebung des Serienresonanzkreises}
+	\caption{Phasenverschiebung des Serienresonanzkreises.}
 	\label{fig:phase}
 \end{figure}
-
+Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der Phasenverschiebung aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die dreimal so groß sind wie der eigentliche Wert.
+Um dies zu beheben, setzt man den Wert für den Widerstand fest und fittet nur die anderen beiden Parameter.
+Dabei wird der Mittelwert $\overline R&=(80.2836 \pm 0.455183)\,\si{\ohm}$ aus den beiden obigen Werten verwendet.
+Man erhält
 \begin{align}
-\omega_\text{Phase}&=- \frac{b}{m}\\
-\sigma_{\omega_\text{Phase}}&=\frac{1}{m^{2}} \cdot \sqrt{b^{2} \cdot \sigma_{m}^{2} + m^{2} \cdot \sigma_{b}^{2}}\\
-\omega_\text{Phase}&=(1200 \pm 120)\,\si\hertz
+	C &= (1.80 \pm 0.24)\,\si{\micro\farad}\qquad \text{und}\\
+	L &= (390 \pm 50)\,\si{\milli\henry}\,.
 \end{align}
+Die daraus berechnete Resonanzfrequenz beträgt
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1200 \pm 110)\,\si\hertz \,.
+\end{empheq}
+
+
+Bei der Resonanzfrequenz verschwindet die Phasenverschiebung.
+In diesem Bereich ist der arcustangens in etwa linear.
+So kann man zusätzlich zu dem Fit der Theoriekurve \eqref{eq:phase_serie} noch eine Gerade durch die Werte in der Nähe der Resonanzfrequenz legen.
+Aus der Steigung $m=(6.7 \pm 0.5)\,\si{\per \hertz}$ und dem y-Achsenabschnitt $b=(-8.0 \pm 0.6)$ kann man mit
+\begin{align}
+	\omega_R&=\omega(\varphi=0)=- \frac{b}{m}\,,\\
+	\sigma_{\omega_R}&=\frac{1}{m^{2}} \cdot \sqrt{b^{2} \cdot \sigma_{m}^{2} + m^{2} \cdot \sigma_{b}^{2}}
+\end{align}
+die Resonanzfrequenz berechnen.
+Man erhält
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1200 \pm 120)\,\si\hertz \,.
+\end{empheq}
+
 \begin{figure}[!htb]
 	\centering
 	\input{spannungen.tex}
-	\caption{Teilspannungen des Serienresonanzkreises}
+	\caption{Teilspannungen des Serienresonanzkreises.}
 	\label{fig:teilU}
 \end{figure}
+Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}, fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
+Außerdem ist dieses gleich groß.
+Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerstand aufheben.
 
 \subsection{Parallelkreis}
 \begin{figure}[!htb]
 	\centering
 	\input{messung3.tex}
-	\caption{Impedanz des Parallelkreises als Funktion der Kreisfrequenz}
+	\caption{Impedanz des Parallelkreises als Funktion der Kreisfrequenz.}
 	\label{fig:messung3}
 \end{figure}
 
 Aus Fit von Messung 3:
 \begin{align}
-	R &= (68\pm 5)\si{\kilo\ohm}\\
-	L &= (370 \pm 10)\si{\milli\henry}\\
-	C &= (1.88  \pm 0.05) \si{\micro\farad}
+	R &= (68\pm 5)\,\si{\kilo\ohm}\\
+	L &= (370 \pm 10)\,\si{\milli\henry}\\
+	C &= (1.88  \pm 0.05)\, \si{\micro\farad}
 \end{align}
 
 Daraus ergibt sich eine Resonanzfrequenz
-\begin{align}
-	\omega_R=(1200 \pm 20)\,\si{\hertz} \,.
-\end{align}
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1199 \pm 23)\,\si\hertz \,.
+\end{empheq}
 
 
 \section{Diskussion}
