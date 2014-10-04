@@ -34,6 +34,7 @@
 
 % Pakete mit Mathesymbolen und zur Beseitigung von Schwächen der Mathe-Umgebung
 \usepackage{latexsym,exscale,amssymb,amsmath}
+\usepackage{nicefrac}
 
 % Weitere Symbole
 \usepackage[nointegrals]{wasysym}
@@ -169,218 +170,243 @@ Versuchspartner: & Michael Lohmann\\
 
 \newpage
 
-%\section{Einleitung}
-%\label{sec:einleitung}
-%Bei diesem Versuch sollen induktive und kapazitive Widerstände und die damit verbundene Phasenverschiebung zwischen Strom und Spannung untersucht werden.
-%%bla bla
-%
-%\section{Theorie}
-%\label{sec:theorie}
-%\section{Wechselstrom}
-%Bei dem heutzutage fast überall verwendeten \textit{Wechselstrom} verhalten sich Spannung und Strom Sinus-förmig, sind jedoch um $\varphi$ phasenverschoben:
+\section{Einleitung}
+\label{sec:einleitung}
+Bei diesem Versuch sollen induktive und kapazitive Widerstände und die damit verbundene Phasenverschiebung zwischen Strom und Spannung untersucht werden.
+%bla bla
+
+\section{Theorie}
+\label{sec:theorie}
+\subsection{Wechselstrom}
+Bei dem heutzutage fast überall verwendeten \textit{Wechselstrom} verhalten sich Spannung und Strom Sinus-förmig, sind jedoch um $\varphi$ phasenverschoben:
+\begin{align}
+	U(t)&=U_0\cdot\sin(\omega t)\,,\\
+	I(t)&=I_0\cdot\sin(\omega t-\varphi)\,.
+\end{align}
+Als \textit{Effektivwert} eines Wechselstroms bezeichnet man den Wert, bei dem bei Gleichstrom die gleich Leistung abgegeben würde.
+Für eine Sinus-förmige Spannung der Amplitude $U_0$ ergibt sich somit
+\begin{align}
+	U_\text{eff}=\sqrt{\frac{1}{2}}\cdot U_0 \,.
+\end{align}
+Analoges gilt für den Strom.
+Vom Multimeter, welches Wechselstrom misst, wird der Effektivwert und nicht die Amplitude der Messgröße angezeigt.
+
+\subsection{Kapazitiver Widerstand}
+Ein Kondensator mit der Kapazität $C$, an dem die Spannung $U$ anliegt, trägt die Ladung $Q=C\cdot U$.
+Für eine Wechselspannung $U_0\sin(\omega t)$ ergibt sich aus der zeitlichen Ableitung der Ladung $I=\dot{Q}$
+\begin{align}
+	I(t)=\omega C\cdot U_0\cdot \cos(\omega t)=\omega C\cdot U_0\cdot\sin\left(\omega t+\frac{\pi}{2}\right)\,.
+\end{align}
+Man erkennt, dass der Strom der Spannung voraus eilt und die Phasenverschiebung $\varphi=-\frac{\pi}{2}$ beträgt.
+Über die komplexe Schreibweise $U(t)=U_0 \, e^{i\omega t}$ und $I(t)=I_0 \, e^{i(\omega t - \varphi)}$ lässt sich der komplexe Widerstand
+\begin{align}
+	X_C=\frac{U}{I}= \frac{U_0}{\omega C \cdot U_0}\, e^{-i\frac{\pi}{2}}=-i\frac{1}{\omega C}
+\end{align}
+definieren.
+
+\subsection{Induktiver Widerstand}
+Fließt durch eine Spule mit der Induktivität $L$ ein zeitlich veränderlicher Strom, induziert dieser eine Induktionsspannung $U_\text{ind}=-L\dot{I}$.
+Soll diese Spannung die Form $U_0\,\sin(\omega t)$, folgt für den Strom durch Integration
+\begin{align}
+	I(t)=\frac{U_0}{\omega L}\cdot \sin\left(\omega t-\frac{\pi}{2}\right)\,.
+\end{align}
+Für den Blindwiderstand gilt also
+\begin{align}
+	X_L=i\omega L \,.
+\end{align}
+Hier eilt die Spannung also dem Strom voraus und die Phasenverschiebung beträgt $\varphi=\frac{\pi}{2}$.
+Außerdem ist $X_L$ größer, je größer die Frequenz $\omega$ des Wechselstroms.
+
+Außerdem besitzen Spulen meist einen nicht zu vernachlässigenden ohmschen Widerstand $R_L$, da sie aus sehr langem Draht bestehen.
+
+\subsection{Impedanz und Zeigerdiagramm}
+Als Impedanz bezeichnet man die Summe aus ohmschem, kapazitivem sowie induktivem Widerstand
+\begin{align}
+	Z=R+X_C+X_L \,.
+\end{align}
+Der Betrag der Impedanz ist der Scheinwiderstand
+\begin{align}
+	|Z|=\sqrt{R^2+\left(\omega L - \frac{1}{\omega C}\right)^2} \,.
+\end{align}
+Außerdem kann man alle drei Widerstände in ein Zeigerdiagramm einzeichnen.
+Dabei ist der ohmsche Widerstand auf der reelen Achse und die beiden Blindwiderstände auf der imaginären.
+Addiert man alle, ergibt sich die Impedanz.
+Der Winkel zwischen $Z$ und der reelen Achse ist die Phasenverschiebung $\phi$ zwischen Spannung und Strom 
+Sie kann also mit der Formel 
+\begin{align}
+	\varphi=\arctan\left(\frac{\omega L - \frac{1}{\omega C}}{R} \right)
+	\label{eq:phase_serie}
+\end{align}
+berechnet werden.
+
+Bei der Resonanzfrequenz $\omega_R$ ist der Scheinwiderstand am geringsten, die Blindwiderstände heben sich nämlich auf: $\omega_R L=\frac{1}{\omega_R C}$.
+Daraus folgt:
+\begin{align}
+	\omega_R&=\sqrt{\frac{1}{LC}}
+	\label{eq:omega_R}	
+	\,,\\
+	\varphi(\omega_R)&=0\,,\\
+	Z(\omega_R)&=R\,.
+\end{align}
+
+\subsection{Parallelschaltung}
+Schaltet man eine Spule mit der Induktivität $L$ und dem ohmschen Widerstand $R_L$ parallel zu einem Kondensator mit der Kapazität $C$, ergibt sich für die Impedanz
+\begin{align}
+	Z(\omega)=\left(\frac{1}{R_L+i\omega L}+i\omega C\right)^{-1}\
+\end{align}
+und
+\begin{align}
+	|Z|=\left[\left(\omega C - \frac{\omega L}{R_L^2+(\omega L)^2}\right)^2+	\left(\frac{R_L}{R_L^2+(\omega L)^2}\right)^2\right]^{-\frac{1}{2}}
+\end{align}
+als Scheinwiderstand.
+                                                                                                                                                                      
+\section{Durchführung}
+\label{sec:durchfuehrung}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{serie.png}
+	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
+	\label{fig:serie}
+\end{figure}
+
+Zuerst wird der \textbf{Serienresonanzkreis} aus Abb. \eqref{fig:serie} aufgebaut.
+Dabei wird das Oszilloskop so angeschlossen und eingestellt, dass die Phasenverschiebung zwischen Strom und Spannung abgelesen werden kann:
+Während die Spannung parallel zum Frequenzgenerator gemessen wird und an Channel 1 des Oszilloskops anliegt, legt man in die Stromzange (Channel 2) das Kabel, von welchem der Strom gemessen werden soll.
+Nun schaltet man im y-t-Mode des Oszilloskops unter dem Punkt \emph{Messung} die Bestimmung der Phasenverschiebung zwischen den beiden Signalen ein.\\
+Zur ersten Messung überbrückt man den Kondensator, indem man den Schalter schließt.
+Nun wird für mindestens 10 Frequenzen Spannung und Strom sowie deren Phasenverschiebung gemessen.
+Daraus kann man später die Induktivität der Spule sowie den ohmschen Widerstand berechnen.\\
+Die nächsten Messungen finden mit dem Kondensator statt, der Schalter wird also geöffnet.
+In Abhängigkeit der Frequenz werden jetzt der Strom $I$, die Spannung $U$ sowie die Teilspannungen $U_C$ und $U_{L+R}$ und die Phasenverschiebung $\varphi$ gemessen.
+Dabei sollen möglichst viele Messungen in der Nähe der Resonanzfrequenz $\omega_R$ durchgeführt werden.\\
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1.0]{parallel.png}
+	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
+	\label{fig:parallel}
+\end{figure}
+
+
+Als nächstes wird die Schaltung nach Abb. \eqref{fig:parallel} zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
+Wieder wird die Spannung und der Strom in Abhängigkeit der Frequenz gemessen.
+Hier liegt der Fokus wie zuvor auf der Resonanzfrequenz.\\
+
+Zum Schluss misst man mit dem Multimeter den Innenwiderstand des Amperemeters und den einzelnen ohmschen Widerstand $R_\Omega$ sowie $R_L$ der Spule.
+Außerdem werden die Kapazität des Kondensators gemessen und die Spulendaten notiert. 
+
+\section{Auswertung}
+\label{sec:auswertung}
+\subsection{Widerstand und Spule in Reihe}
+\begin{figure}[!htb]
+	\centering
+	\input{messung1.tex}
+	\caption{RL-Serienschaltung: Quadrat der Impedanz als Funktion der Kreisfrequenz.}
+	\label{fig:messung1}
+\end{figure}
+Trägt man das Quadrat der Impedanz gegen das der Kreisfrequenz auf, ergibt sich eine Gerade $Z^2=R^2+L^2\omega^2=b+m\cdot(\omega^2)$.
+Dies kann man in Abbildung \eqref{fig:messung1} erkennen.
+Um aus dem Ergebnis der linearen Regression $m$ und $b$ die Indukivität  $L$ sowie den ohmschen Widerstand $R$ zu berechnen, muss also die Wurzel gezogen werden.
+Der Fehler von $x=\sqrt{y}$ berechnet man mit der Formel $\sigma_x=\frac{\sigma_y}{2\sqrt{y}}$, welche aus der Gauss'schen  Fehlerfortpflanzung stammt.
+
+So erhält man aus $m = (0.1493 \pm 0.0005)\,\si{\ohm^2\per\hertz^2}$ und $b = (0.00597 \pm 0.00017)\,\si{(\kilo\ohm)^2}$ 
+\begin{align}
+	L&=(386.3\pm 0.6)\,\si{\milli\henry}\qquad \text{sowie}\\
+	R&=(77.3 \pm 1.1)\,\si{\ohm}\,.
+\end{align}
+\subsection{RLC-Serienschaltung}
+\begin{figure}[!htb]
+	\centering
+	\input{messung2.tex}
+	\caption{Impedanz des Serienresonanzkreis als Funktion der Kreisfrequenz.}
+	\label{fig:messung2}
+\end{figure}
+Aus
+\begin{align}
+	R &= (80.9 \pm 0.5)\,\si{\ohm}\,,\\
+	L &= (386.1 \pm 1.0)\,\si{\milli\henry}\qquad\text{und}\\
+	C &= (1.799 \pm 0.005)\,\si{\micro\farad}\,.
+\end{align}
+\begin{align}
+	\omega_R&=\frac{1}{\sqrt{LC}}\,,\\
+	\sigma_{\omega_R}&=\frac{\sqrt{\frac{\sigma_{L}^{2}}{L^{2}} + \frac{\sigma_{C}^{2}}{C^{2}}}}{2 \cdot \sqrt{C} \cdot \sqrt{L}}\,.
+\end{align}
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1199.9 \pm 2.3)\,\si\hertz \,.
+\end{empheq}
+%Mittelwerte aus allen Daten:
 %\begin{align}
-%	U(t)&=U_0\cdot\sin(\omega t)\,,\\
-%	I(t)&=I_0\cdot\sin(\omega t-\varphi)\,.\\
+%	\overline L&=(386.2 \pm 0.6)\si{\milli\henry}
 %\end{align}
-%Als \textit{Effektivwert} eines Wechselstroms bezeichnet man den Wert, bei dem bei Gleichstrom die gleich Leistung abgegeben würde.
-%Für eine Sinus-förmige Spannung der Amplitude $U_0$ ergibt sich somit
-%\begin{align}
-%	U_\text{eff}=\sqrt{\frac{1}{2}}\cdot U_0 \,.
-%\end{align}
-%Analoges gilt für den Strom.
-%Vom Multimeter, welches Wechselstrom misst, wird der Effektivwert und nicht die Amplitude der Messgröße angezeigt.
-%
-%\subsection{Induktiver Widerstand}
-%Fließt durch eine Spule mit der Induktivität $L$ ein zeitlich veränderlicher Strom, induziert dieser eine Induktionsspannung $U_\text{ind}=-L\dot{I}$.
-%
-%
-%\begin{align}
-%	X_L=i\omega L \,.
-%\end{align}
-%
-%Außerdem besitzen Spulen meist einen nicht zu vernachlässigenden ohmschen Widerstand $R_L$, da sie aus sehr langem Draht bestehen.
-%
-%\subsection{Kapazitiver Widerstand}
-%Ein Kondensator mit der Kapazität $C$, an dem die Spannung $U$ anliegt, trägt die Ladung $Q=C\cdot U$.
-%Für eine Wechselspannung $U_0\sin(\omega t)$ ergibt sich aus der zeitlichen Ableitung der Ladung $I=\dot{Q}$
-%\begin{align}
-%	I(t)=CU_0\cdot \dot{(\sin\omega t)}=I_0\cdot\sin(\omega t-\frac{\pi}{2})
-%\end{align}
-%\begin{align}
-%	X_C=-i\frac{1}{\omega C} \,.
-%\end{align}
-%
-%\subsection{Impedanz und Zeigerdiagramm}
-%Impedanz
-%\begin{align}
-%	Z=R+X_C+X_L \,.
-%\end{align}
-%Scheinwiderstand
-%\begin{align}
-%	|Z|=\sqrt{R^2+\left(\omega L - \frac{1}{\omega C}\right)^2} \,.
-%\end{align}
-%
-%Phasenverschiebung
-%\begin{align}
-%	\varphi=\arctan\left(\frac{\omega L - \frac{1}{\omega C}}{R} \right) \,.
-%	\label{eq:phase_serie}
-%\end{align}
-%
-%Minimaler Widerstand bei der Resonanzfrequenz
-%\begin{align}
-%	\omega_R=\sqrt{\frac{1}{LC}} \,.
-%\end{align}
-%
-%\subsection{Parallelschaltung}
-%
-%                                                                                                                                                                      
-%\section{Durchführung}
-%\label{sec:durchfuehrung}
-%\begin{figure}[!htb]
-%	\centering
-%	\includegraphics[scale=0.8]{serie.png}
-%	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
-%	\label{fig:serie}
-%\end{figure}
-%
-%Zuerst wird der \textbf{Serienresonanzkreis} aus Abb. \eqref{fig:serie} aufgebaut.
-%Dabei wird das Oszilloskop so angeschlossen und eingestellt, dass die Phasenverschiebung zwischen Strom und Spannung abgelesen werden kann:
-%Während die Spannung parallel zum Frequenzgenerator gemessen wird und an Channel 1 des Oszilloskops anliegt, legt man in die Stromzange (Channel 2) das Kabel, von welchem der Strom gemessen werden soll.
-%Nun schaltet man im y-t-Mode des Oszilloskops unter dem Punkt \emph{Messung} die Bestimmung der Phasenverschiebung zwischen den beiden Signalen ein.\\
-%Zur ersten Messung überbrückt man den Kondensator, indem man den Schalter schließt.
-%Nun wird für mindestens 10 Frequenzen Spannung und Strom sowie deren Phasenverschiebung gemessen.
-%Daraus kann man später die Induktivität der Spule sowie den ohmschen Widerstand berechnen.\\
-%Die nächsten Messungen finden mit dem Kondensator statt, der Schalter wird also geöffnet.
-%In Abhängigkeit der Frequenz werden jetzt der Strom $I$, die Spannung $U$ sowie die Teilspannungen $U_C$ und $U_{L+R}$ und die Phasenverschiebung $\varphi$ gemessen.
-%Dabei sollen möglichst viele Messungen in der Nähe der Resonanzfrequenz $\omega_R$ durchgeführt werden.\\
-%
-%\begin{figure}[!htb]
-%	\centering
-%	\includegraphics[scale=1.0]{parallel.png}
-%	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
-%	\label{fig:parallel}
-%\end{figure}
-%
-%
-%Als nächstes wird die Schaltung nach Abb. \eqref{fig:parallel} zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
-%Wieder wird die Spannung und der Strom in Abhängigkeit der Frequenz gemessen.
-%Hier liegt der Fokus wie zuvor auf der Resonanzfrequenz.\\
-%
-%Zum Schluss misst man mit dem Multimeter den Innenwiderstand des Amperemeters und den einzelnen ohmschen Widerstand $R_\Omega$ sowie $R_L$ der Spule.
-%Außerdem werden die Kapazität des Kondensators gemessen und die Spulendaten notiert. 
-%
-%\section{Auswertung}
-%\label{sec:auswertung}
-%\subsection{Widerstand und Spule in Reihe}
-%\begin{figure}[!htb]
-%	\centering
-%	\input{messung1.tex}
-%	\caption{RL-Serienschaltung: Quadrat der Impedanz als Funktion der Kreisfrequenz.}
-%	\label{fig:messung1}
-%\end{figure}
-%Trägt man das Quadrat der Impedanz gegen das der Kreisfrequenz auf, ergibt sich eine Gerade $Z^2=R^2+L^2\omega^2=b+m\cdot(\omega^2)$.
-%Dies kann man in Abbildung \eqref{fig:messung1} erkennen.
-%Um aus dem Ergebnis der linearen Regression $m$ und $b$ die Indukivität  $L$ sowie den ohmschen Widerstand $R$ zu berechnen, muss also die Wurzel gezogen werden.
-%Der Fehler von $x=\sqrt{y}$ berechnet man mit der Formel $\sigma_x=\frac{\sigma_y}{2\sqrt{y}}$, welche aus der Gauss'schen  Fehlerfortpflanzung stammt.
-%
-%So erhält man aus $m = (0.1493 \pm 0.0005)\,\si{\ohm^2\per\hertz^2}$ und $b = (0.00597 \pm 0.00017)\,\si{(\kilo\ohm)^2}$ 
-%\begin{align}
-%	L&=(386.3\pm 0.6)\,\si{\milli\henry}\qquad \text{sowie}\\
-%	R&=(77.3 \pm 1.1)\,\si{\ohm}\,.
-%\end{align}
-%\subsection{RLC-Serienschaltung}
-%\begin{figure}[!htb]
-%	\centering
-%	\input{messung2.tex}
-%	\caption{Impedanz des Serienresonanzkreis als Funktion der Kreisfrequenz.}
-%	\label{fig:messung2}
-%\end{figure}
-%Aus
-%\begin{align}
-%	R &= (80.9 \pm 0.5)\,\si{\ohm}\,,\\
-%	L &= (386.1 \pm 1.0)\,\si{\milli\henry}\qquad\text{und}\\
-%	C &= (1.799 \pm 0.005)\,\si{\micro\farad}\,.
-%\end{align}
-%\begin{align}
-%	\omega_R&=\frac{1}{\sqrt{LC}}\,,\\
-%	\sigma_{\omega_R}&=\frac{\sqrt{\frac{\sigma_{L}^{2}}{L^{2}} + \frac{\sigma_{C}^{2}}{C^{2}}}}{2 \cdot \sqrt{C} \cdot \sqrt{L}}\,.
-%\end{align}
-%\begin{empheq}[box=\shadowbox*]{align*}
-%	\omega_R&=(1199.9 \pm 2.3)\,\si\hertz \,.
-%\end{empheq}
-%%Mittelwerte aus allen Daten:
-%%\begin{align}
-%%	\overline L&=(386.2 \pm 0.6)\si{\milli\henry}
-%%\end{align}
-%
-%\begin{figure}[!htb]
-%	\centering
-%	\input{phase.tex}
-%	\caption{Phasenverschiebung des Serienresonanzkreises.}
-%	\label{fig:phase}
-%\end{figure}
-%Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der Phasenverschiebung aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die dreimal so groß sind wie der eigentliche Wert.
-%Um dies zu beheben, setzt man den Wert für den Widerstand fest und fittet nur die anderen beiden Parameter.
-%Dabei wird der Mittelwert $\overline R&=(80.2836 \pm 0.455183)\,\si{\ohm}$ aus den beiden obigen Werten verwendet.
-%Man erhält
-%\begin{align}
-%	C &= (1.80 \pm 0.24)\,\si{\micro\farad}\qquad \text{und}\\
-%	L &= (390 \pm 50)\,\si{\milli\henry}\,.
-%\end{align}
-%Die daraus berechnete Resonanzfrequenz beträgt
-%\begin{empheq}[box=\shadowbox*]{align*}
-%	\omega_R&=(1200 \pm 110)\,\si\hertz \,.
-%\end{empheq}
-%
-%
-%Bei der Resonanzfrequenz verschwindet die Phasenverschiebung.
-%In diesem Bereich ist der arcustangens in etwa linear.
-%So kann man zusätzlich zu dem Fit der Theoriekurve \eqref{eq:phase_serie} noch eine Gerade durch die Werte in der Nähe der Resonanzfrequenz legen.
-%Aus der Steigung $m=(6.7 \pm 0.5)\,\si{\per \hertz}$ und dem y-Achsenabschnitt $b=(-8.0 \pm 0.6)$ kann man mit
-%\begin{align}
-%	\omega_R&=\omega(\varphi=0)=- \frac{b}{m}\,,\\
-%	\sigma_{\omega_R}&=\frac{1}{m^{2}} \cdot \sqrt{b^{2} \cdot \sigma_{m}^{2} + m^{2} \cdot \sigma_{b}^{2}}
-%\end{align}
-%die Resonanzfrequenz berechnen.
-%Man erhält
-%\begin{empheq}[box=\shadowbox*]{align*}
-%	\omega_R&=(1200 \pm 120)\,\si\hertz \,.
-%\end{empheq}
-%
-%\begin{figure}[!htb]
-%	\centering
-%	\input{spannungen.tex}
-%	\caption{Teilspannungen des Serienresonanzkreises.}
-%	\label{fig:teilU}
-%\end{figure}
-%Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}, fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
-%Außerdem ist dieses gleich groß.
-%Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerstand aufheben.
-%
-%\subsection{Parallelkreis}
-%\begin{figure}[!htb]
-%	\centering
-%	\input{messung3.tex}
-%	\caption{Impedanz des Parallelkreises als Funktion der Kreisfrequenz.}
-%	\label{fig:messung3}
-%\end{figure}
-%
-%Aus Fit von Messung 3:
-%\begin{align}
-%	R &= (68\pm 5)\,\si{\kilo\ohm}\\
-%	L &= (370 \pm 10)\,\si{\milli\henry}\\
-%	C &= (1.88  \pm 0.05)\, \si{\micro\farad}
-%\end{align}
-%
-%Daraus ergibt sich eine Resonanzfrequenz
-%\begin{empheq}[box=\shadowbox*]{align*}
-%	\omega_R&=(1199 \pm 23)\,\si\hertz \,.
-%\end{empheq}
-%
-%
-%\section{Diskussion}
-%\label{sec:diskussion}
-%
-%\bibliography{literatur}
-%\bibliographystyle{babalpha}
+
+\begin{figure}[!htb]
+	\centering
+	\input{phase.tex}
+	\caption{Phasenverschiebung des Serienresonanzkreises.}
+	\label{fig:phase}
+\end{figure}
+Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der Phasenverschiebung aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die dreimal so groß sind wie der eigentliche Wert.
+Um dies zu beheben, setzt man den Wert für den Widerstand fest und fittet nur die anderen beiden Parameter.
+Dabei wird der Mittelwert $\overline R&=(80.2836 \pm 0.455183)\,\si{\ohm}$ aus den beiden obigen Werten verwendet.
+Man erhält
+\begin{align}
+	C &= (1.80 \pm 0.24)\,\si{\micro\farad}\qquad \text{und}\\
+	L &= (390 \pm 50)\,\si{\milli\henry}\,.
+\end{align}
+Die daraus berechnete Resonanzfrequenz beträgt
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1200 \pm 110)\,\si\hertz \,.
+\end{empheq}
+
+
+Bei der Resonanzfrequenz verschwindet die Phasenverschiebung.
+In diesem Bereich ist der Arcustangens in etwa linear.
+So kann man zusätzlich zu dem Fit der Theoriekurve \eqref{eq:phase_serie} noch eine Gerade durch die Werte in der Nähe der Resonanzfrequenz legen.
+Aus der Steigung $m=(6.7 \pm 0.5)\,\si{\per \hertz}$ und dem y-Achsenabschnitt $b=(-8.0 \pm 0.6)$ kann man mit
+\begin{align}
+	\omega_R&=\omega(\varphi=0)=- \frac{b}{m}\,,\\
+	\sigma_{\omega_R}&=\frac{1}{m^{2}} \cdot \sqrt{b^{2} \cdot \sigma_{m}^{2} + m^{2} \cdot \sigma_{b}^{2}}
+\end{align}
+die Resonanzfrequenz berechnen.
+Man erhält
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1200 \pm 120)\,\si\hertz \,.
+\end{empheq}
+
+\begin{figure}[!htb]
+	\centering
+	\input{spannungen.tex}
+	\caption{Teilspannungen des Serienresonanzkreises.}
+	\label{fig:teilU}
+\end{figure}
+Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}, fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
+Außerdem ist dieses gleich groß.
+Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerstand aufheben.
+
+\subsection{Parallelkreis}
+\begin{figure}[!htb]
+	\centering
+	\input{messung3.tex}
+	\caption{Impedanz des Parallelkreises als Funktion der Kreisfrequenz.}
+	\label{fig:messung3}
+\end{figure}
+
+Aus Fit von Messung 3:
+\begin{align}
+	R &= (68\pm 5)\,\si{\kilo\ohm}\\
+	L &= (370 \pm 10)\,\si{\milli\henry}\\
+	C &= (1.88  \pm 0.05)\, \si{\micro\farad}
+\end{align}
+
+Daraus ergibt sich eine Resonanzfrequenz
+\begin{empheq}[box=\shadowbox*]{align*}
+	\omega_R&=(1199 \pm 23)\,\si\hertz \,.
+\end{empheq}
+
+
+\section{Diskussion}
+\label{sec:diskussion}
+
+\bibliography{literatur}
+\bibliographystyle{babalpha}
 \end{document}
