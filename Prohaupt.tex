@@ -227,6 +227,7 @@ Als Impedanz bezeichnet man die Summe aus ohmschem, kapazitivem sowie induktivem
 Der Betrag der Impedanz ist der Scheinwiderstand
 \begin{align}
 	|Z|=\sqrt{R^2+\left(\omega L - \frac{1}{\omega C}\right)^2} \,.
+	\label{eq:Scheinwiderstand_serie}
 \end{align}
 Außerdem kann man alle drei Widerstände in ein Zeigerdiagramm einzeichnen.
 Dabei ist der ohmsche Widerstand auf der reelen Achse und die beiden Blindwiderstände auf der imaginären.
@@ -257,6 +258,7 @@ Schaltet man eine Spule mit der Induktivität $L$ und dem ohmschen Widerstand $R
 und
 \begin{align}
 	|Z|=\left[\left(\omega C - \frac{\omega L}{R_L^2+(\omega L)^2}\right)^2+	\left(\frac{R_L}{R_L^2+(\omega L)^2}\right)^2\right]^{-\frac{1}{2}}
+	\label{eq:parallel}
 \end{align}
 als Scheinwiderstand.
                                                                                                                                                                       
@@ -283,7 +285,7 @@ Dabei sollen möglichst viele Messungen in der Nähe der Resonanzfrequenz $\omeg
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=1.0]{parallel.png}
-	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
+	\caption{LC-Parallelschaltung \cite[Datum: 03.10.14]{LP14}.}
 	\label{fig:parallel}
 \end{figure}
 
@@ -301,7 +303,7 @@ Außerdem werden die Kapazität des Kondensators gemessen und die Spulendaten no
 \begin{figure}[!htb]
 	\centering
 	\input{messung1.tex}
-	\caption{RL-Serienschaltung: Quadrat der Impedanz als Funktion der Kreisfrequenz.}
+	\caption{RL-Serienschaltung: Quadrat des Scheinwiderstandes als Funktion der Kreisfrequenz.}
 	\label{fig:messung1}
 \end{figure}
 Trägt man das Quadrat der Impedanz gegen das der Kreisfrequenz auf, ergibt sich eine Gerade $Z^2=R^2+L^2\omega^2=b+m\cdot(\omega^2)$.
@@ -310,27 +312,31 @@ Um aus dem Ergebnis der linearen Regression $m$ und $b$ die Indukivität  $L$ so
 Der Fehler von $x=\sqrt{y}$ berechnet man mit der Formel $\sigma_x=\frac{\sigma_y}{2\sqrt{y}}$, welche aus der Gauss'schen  Fehlerfortpflanzung stammt.
 
 So erhält man aus $m = (0.1493 \pm 0.0005)\,\si{\ohm^2\per\hertz^2}$ und $b = (0.00597 \pm 0.00017)\,\si{(\kilo\ohm)^2}$ 
-\begin{align}
+\begin{align*}
 	L&=(386.3\pm 0.6)\,\si{\milli\henry}\qquad \text{sowie}\\
 	R&=(77.3 \pm 1.1)\,\si{\ohm}\,.
-\end{align}
+\end{align*}
 \subsection{RLC-Serienschaltung}
 \begin{figure}[!htb]
 	\centering
 	\input{messung2.tex}
-	\caption{Impedanz des Serienresonanzkreis als Funktion der Kreisfrequenz.}
+	\caption{Scheinwiderstand des Serienresonanzkreises als Funktion der Kreisfrequenz.}
 	\label{fig:messung2}
 \end{figure}
-Aus
-\begin{align}
+Trägt man den Scheinwiderstand der Serienschaltung in Abhängigkeit der Frequenz auf (Abb.\ref{fig:messung2}) und fittet die theoretische Kurve aus Formel \eqref{eq:Scheinwiderstand_serie}, erhält man für die Parameter 
+\begin{align*}
 	R &= (80.9 \pm 0.5)\,\si{\ohm}\,,\\
 	L &= (386.1 \pm 1.0)\,\si{\milli\henry}\qquad\text{und}\\
 	C &= (1.799 \pm 0.005)\,\si{\micro\farad}\,.
-\end{align}
+\end{align*}
+Mit der Formel \eqref{eq:omega_R} kann nun die Resonanzfrequenz bestimmt werden.
+Dabei wird die Formel
 \begin{align}
-	\omega_R&=\frac{1}{\sqrt{LC}}\,,\\
-	\sigma_{\omega_R}&=\frac{\sqrt{\frac{\sigma_{L}^{2}}{L^{2}} + \frac{\sigma_{C}^{2}}{C^{2}}}}{2 \cdot \sqrt{C} \cdot \sqrt{L}}\,.
+	\sigma_{\omega_R}&=\frac{\sqrt{\frac{\sigma_{L}^{2}}{L^{2}} + \frac{\sigma_{C}^{2}}{C^{2}}}}{2 \cdot \sqrt{C} \cdot \sqrt{L}}\,,
+	\label{eq:omega_R_fehler}
 \end{align}
+die sich aus der Fehlerfortpflanzung ergibt, für den Fehler verwendet.
+Man erhält:
 \begin{empheq}[box=\shadowbox*]{align*}
 	\omega_R&=(1199.9 \pm 2.3)\,\si\hertz \,.
 \end{empheq}
@@ -345,15 +351,15 @@ Aus
 	\caption{Phasenverschiebung des Serienresonanzkreises.}
 	\label{fig:phase}
 \end{figure}
-Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der Phasenverschiebung aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die dreimal so groß sind wie der eigentliche Wert.
+Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der \textbf{Phasenverschiebung} aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die dreimal so groß sind wie der eigentliche Wert.
 Um dies zu beheben, setzt man den Wert für den Widerstand fest und fittet nur die anderen beiden Parameter.
 Dabei wird der Mittelwert $\overline R&=(80.2836 \pm 0.455183)\,\si{\ohm}$ aus den beiden obigen Werten verwendet.
 Man erhält
-\begin{align}
+\begin{align*}
 	C &= (1.80 \pm 0.24)\,\si{\micro\farad}\qquad \text{und}\\
 	L &= (390 \pm 50)\,\si{\milli\henry}\,.
-\end{align}
-Die daraus berechnete Resonanzfrequenz beträgt
+\end{align*}
+Die daraus mit \eqref{eq:omega_R} und \eqref{eq:omega_R_fehler} berechnete Resonanzfrequenz beträgt
 \begin{empheq}[box=\shadowbox*]{align*}
 	\omega_R&=(1200 \pm 110)\,\si\hertz \,.
 \end{empheq}
@@ -379,7 +385,7 @@ Man erhält
 	\caption{Teilspannungen des Serienresonanzkreises.}
 	\label{fig:teilU}
 \end{figure}
-Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}, fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
+Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}), fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
 Außerdem ist dieses gleich groß.
 Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerstand aufheben.
 
@@ -387,18 +393,17 @@ Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerst
 \begin{figure}[!htb]
 	\centering
 	\input{messung3.tex}
-	\caption{Impedanz des Parallelkreises als Funktion der Kreisfrequenz.}
+	\caption{Scheinwiderstand des Parallelkreises als Funktion der Kreisfrequenz.}
 	\label{fig:messung3}
 \end{figure}
-
-Aus Fit von Messung 3:
-\begin{align}
-	R &= (68\pm 5)\,\si{\kilo\ohm}\\
-	L &= (370 \pm 10)\,\si{\milli\henry}\\
-	C &= (1.88  \pm 0.05)\, \si{\micro\farad}
-\end{align}
-
-Daraus ergibt sich eine Resonanzfrequenz
+In Abbildung \eqref{fig:messung3} ist der Scheinwiderstand des Parallelkreises gegen die Frequenz aufgetragen.
+Der Fit der Theoriekurve \eqref{eq:parallel} liefert 
+\begin{align*}
+	R_L &= (68\pm 5)\,\si{\kilo\ohm}\,,\\
+	L &= (370 \pm 10)\,\si{\milli\henry}\qquad \text{und}\\
+	C &= (1.88  \pm 0.05)\, \si{\micro\farad}\,.
+\end{align*}
+Daraus ergibt sich mit \eqref{eq:omega_R} und \eqref{eq:omega_R_fehler} die Resonanzfrequenz
 \begin{empheq}[box=\shadowbox*]{align*}
 	\omega_R&=(1199 \pm 23)\,\si\hertz \,.
 \end{empheq}

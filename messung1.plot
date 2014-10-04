@@ -2,7 +2,7 @@ reset
 set terminal epslatex color
 set output 'messung1.tex'
 set xlabel '$\omega^2$ [(kHz)$^2$]'
-set ylabel '$Z^2$ [(k$\Omega )^2$]'
+set ylabel '$|Z|^2$ [(k$\Omega )^2$]'
 set key top left
 
 #set xrange[0:0.001]

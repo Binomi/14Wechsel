@@ -2,7 +2,7 @@ reset
 set terminal epslatex color
 set output 'messung3.tex'
 set xlabel '$\omega$ [kHz]'
-set ylabel '$Z$ [k$\Omega$]'
+set ylabel '$|Z|$ [k$\Omega$]'
 set key top right
 
 #f(x)=sqrt((R**2+(x*L-x*(R**2)*C-(x**3)*(L**2)*C)**2)/((x*C*R)**2+(1-(x**2)*L*C)**2))
