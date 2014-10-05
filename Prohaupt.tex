@@ -216,7 +216,7 @@ Für eine Wechselspannung $U_0\sin(\omega t)$ ergibt sich aus der zeitlichen Abl
 	I(t)=\omega C\cdot U_0\cdot \cos(\omega t)=\omega C\cdot U_0\cdot\sin\left(\omega t+\frac{\pi}{2}\right)\,.
 \end{align}
 Man erkennt, dass der Strom der Spannung voraus eilt und die Phasenverschiebung $\varphi=-\frac{\pi}{2}$ beträgt.
-Über die komplexe Schreibweise lässt sich der \textit{Blindwiderstand}
+Über die komplexe Schreibweise lässt sich der rein imaginäre \textit{Blindwiderstand}
 \begin{align}
 	X_C=\frac{U}{I}= \frac{U_0}{\omega C \cdot U_0}\, e^{-i\frac{\pi}{2}}=-i\frac{1}{\omega C}
 \end{align}
@@ -284,12 +284,12 @@ als Scheinwiderstand.
 \label{sec:durchfuehrung}
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.8]{serie.png}
+	\includegraphics[scale=0.6]{serie.png}
 	\caption{RLC-Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
 	\label{fig:serie}
 \end{figure}
 
-Zuerst wird der \textbf{Serienresonanzkreis} aus Abb. \eqref{fig:serie} aufgebaut.
+Zuerst wird der \textbf{Serienresonanzkreis} aus Abb. \ref{fig:serie} aufgebaut.
 Dabei wird das Oszilloskop so angeschlossen und eingestellt, dass die Phasenverschiebung zwischen Strom und Spannung abgelesen werden kann:
 Während die Spannung parallel zum Frequenzgenerator gemessen wird und an Channel 1 des Oszilloskops anliegt, legt man in die Stromzange (Channel 2) das Kabel, von welchem der Strom gemessen werden soll.
 Nun schaltet man im y-t-Mode des Oszilloskops unter dem Punkt \emph{Messung} die Bestimmung der Phasenverschiebung zwischen den beiden Signalen ein.\\
@@ -302,13 +302,13 @@ Dabei sollen möglichst viele Messungen in der Nähe der Resonanzfrequenz $\omeg
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=1.0]{parallel.png}
+	\includegraphics[scale=0.7]{parallel.png}
 	\caption{LC-Parallelschaltung \cite[Datum: 03.10.14]{LP14}.}
 	\label{fig:parallel}
 \end{figure}
 
 
-Als nächstes wird die Schaltung nach Abb. \eqref{fig:parallel} zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
+Als nächstes wird die Schaltung nach Abb. \ref{fig:parallel} zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
 Wieder wird die Spannung und der Strom in Abhängigkeit der Frequenz gemessen.
 Auch hier liegt der Fokus auf der Resonanzfrequenz.\\
 
@@ -325,8 +325,8 @@ Außerdem werden die Kapazität des Kondensators gemessen und die Spulendaten no
 	\label{fig:messung1}
 \end{figure}
 Trägt man das Quadrat der Impedanz gegen das der Kreisfrequenz auf, ergibt sich eine Gerade $Z^2=R^2+L^2\omega^2=b+m\cdot(\omega^2)$.
-Dies kann man in Abbildung \eqref{fig:messung1} erkennen.
-Um aus dem Ergebnis der linearen Regression $m$ und $b$ die Indukivität  $L$ sowie den ohmschen Widerstand $R$ zu berechnen, muss also die Wurzel gezogen werden.
+Dies kann man in Abb. \ref{fig:messung1} erkennen.
+Um aus dem Ergebnis der linearen Regression $m$ und $b$ die Induktivität  $L$ sowie den ohmschen Widerstand $R$ zu berechnen, muss also die Wurzel gezogen werden.
 Der Fehler von $x=\sqrt{y}$ berechnet man mit der Formel $\sigma_x=\frac{\sigma_y}{2\sqrt{y}}$, welche aus der Gauss'schen  Fehlerfortpflanzung stammt.
 
 So erhält man aus $m = (0.1493 \pm 0.0005)\,\si{\ohm^2\per\hertz^2}$ und $b = (0.00597 \pm 0.00017)\,\si{(\kilo\ohm)^2}$ 
@@ -367,7 +367,7 @@ Man erhält:
 	\label{fig:phase}
 \end{figure}
 Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der Phasenverschiebung aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die 30 mal so groß sind wie der eigentliche Wert.
-Um dies zu beheben, setzt man den Wert für den Widerstand fest und fittet nur die anderen beiden Parameter.
+Um dies zu beheben, setzt man den Wert für den Widerstand fest und fittet nur die anderen beiden Parameter (Abb.\ref{fig:phase}).
 Dabei wird der Mittelwert $\overline R&=(80.3 \pm 0.5)\,\si{\ohm}$ aus den beiden obigen Werten verwendet.
 Man erhält
 \begin{align*}
@@ -397,13 +397,13 @@ Man erhält
 \begin{figure}[!htb]
 	\centering
 	\input{spannungen.tex}
-	\caption{Teilspannungen des Serienresonanzkreises.}
+	\caption{Teilspannungen und Gesamtspannung des Serienresonanzkreises in Abhängigkeit der Frequenz.}
 	\label{fig:teilU}
 \end{figure}
 Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}), fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
 Außerdem ist dieses in etwa gleich groß.
 Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerstand aufheben.
-Dies kann man auch in der Abbildung \eqref{fig:zeigerU} erkennen.
+Dies kann man auch in der Abb. \ref{fig:zeigerU} erkennen.
 Dort sind die Spannungen $U_C$ und $U_{L+R}$ sowie die Gesamtspannung $U$ maßstabsgetreu eingezeichnet, welche sich bei der Resonanzfrequenz ergeben.
 Dazu werden die Messwerte bei einer gemessenen Phasenverschiebung von $1^\circ$ verwendet: $U=9.26\,$V, $U_C=52.9\,$V und $U_{L+R}=53.4\,$V. 
 Der eingezeichnete Winkel $\varphi=\arccos\left(\frac{U}{U_{L+R}}\right)=80^\circ=1.396\,$rad ist die Phasenverschiebung zwischen $U_{L+R}$ und dem Strom $I$, da dieser bei $\omega_R$ mit $U$ in Phase ist.
@@ -419,7 +419,7 @@ Für die gewichteten Mittelwerte $\overline{\omega_R}=(1199.9\pm 2.3)\,\si\hertz
 \begin{align*}
 	\varphi=(1.399 \pm 0.001)\,\si{rad}\,.
 \end{align*}
-
+Es ergibt sich eine Abweichung von $2\permil$.
 \begin{figure}
 	\centering	
 	\adjustbox{height=0.4\textheight}{\input{SpannungenZeiger.pdf_tex}}
@@ -434,7 +434,7 @@ Für die gewichteten Mittelwerte $\overline{\omega_R}=(1199.9\pm 2.3)\,\si\hertz
 	\caption{Scheinwiderstand des Parallelkreises als Funktion der Kreisfrequenz.}
 	\label{fig:messung3}
 \end{figure}
-In Abbildung \eqref{fig:messung3} ist der Scheinwiderstand des Parallelkreises gegen die Frequenz aufgetragen.
+In Abb. \ref{fig:messung3} ist der Scheinwiderstand des Parallelkreises gegen die Frequenz aufgetragen.
 Der Fit der Theoriekurve \eqref{eq:parallel} liefert 
 \begin{align*}
 	R_L &= (68\pm 5)\,\si{\ohm}\,,\\
@@ -450,9 +450,38 @@ Daraus ergibt sich mit \eqref{eq:omega_R} und \eqref{eq:omega_R_fehler} die Reso
 \section{Diskussion}
 \label{sec:diskussion}
 \subsection{Ohmscher Widerstand}
+Mit dem Multimeter wurde für den einzelne ohmsche Widerstand der Wert $R_\Omega=(10.1 \pm 0.1)\,\Omega$, für den Widerstand der Spule der Wert $R_L=(65.1 \pm 0.1)\,\Omega$ gemessen.
+Als Summe ergibt sich $R=(75.2 \pm 0.2)\,\Omega$.
+Verglichen mit dem Mittelwert $R=(80.3 \pm 0.5)\,\si\ohm$ aus den obigen Messungen ergibt sich eine Differenz von etwa $5\,\Omega$.
+Diese ist mit dem Innenwiderstand des Amperemeters erklärbar.
+Aus der Parallelkreis-Messung ergibt sich der Widerstand der Spule $R_L=(68\pm 5)\,\si{\ohm}$.
+Dieser Wert weist eine Abweichung von $5\%$ zu dem vom Multimeter gemessenen Wert auf.
+Jedoch liegt letzterer Wert im Fehlerintervall des durch den Fit bestimmten Widerstandes.
+
 \subsection{Induktivität}
+Die Bestimmung der Induktivität weist eine große Konsistenz auf:
+Der Mittelwert $L=(386.2 \pm 0.6)\,\si{\milli\henry}$ liegt in fast allen Fehlerintervallen. Lediglich der über die Parallelschaltung bestimmte Wert ist etwa $5\%$ zu klein.
+Die Werte aus den Fits von Abb. \ref{fig:messung1} und \ref{fig:messung2} sind am genausten.
+Die Spule hat eine Windungszahl $n=1000$ und einen Durchmesser $\diameter=233\,$mm.
+Zwar wurde die Länge nicht gemessen, sie ist jedoch kleiner als der Durchmesser.
+So kann die Induktivität nicht mit der Formel für lange Spulen berechnet werden, da Randeffekte betrachtet werden müssen.
+Es wäre interessant gewesen, die bestimmte Induktivität mit einem aus den Spulendaten berechneten Wert zu vergleichen.
+ 
 \subsection{Kapazität}
+Für die Kapazität ergibt sich aus allen obigen Messungen  der gewichtete Mittelwert $C=(1.800 \pm 0.005)\,\si{\micro\farad}$.
+Mit dem Multimeter wurde der Wert $C=(1.806 \pm 0.010)\,\si{\micro\farad}$ gemessen.
+Dieser ist zwar etwa $4\permil$ größer, jedoch liegt der berechnete Wert im Fehlerintervall und der Multimeter-Wert liegt nur knapp außerhalb des berechneten Fehlerintervalls.
+Betrachtet man die durch die einzelnen Bestimmungsmethoden berechneten Werte genauer, erkennt man, dass der Wert aus dem Parallelkreis-Fit die größte Abweichung von etwa $5\%$ besitzt, der Wert aus der Phasenverschiebung die größte Ungenauigkeit aufweist.
+
 \subsection{Resonanzfrequenz}
+Bei der Bestimmung der Resonanzfrequenz ist auffällig, dass alle Werte bei ziemlich genau $1200\,$Hz liegen.
+Nur die Fehler haben verschiedene Größenordnungen:
+So ist der Wert aus dem Scheinwiderstands-Fit der Serienschaltung (Abb. \ref{fig:messung2}) mit einem Fehler von $2.3\,$Hz am genausten, die beiden Werte aus der Phasenverschiebung weisen einen sehr großen Fehler von über $100\,$Hz auf.
+Es wäre möglich, dass dies an der jeweils gefitteten Funktion liegt.
+So ist es auch nicht verwunderlich, dass der Fit nach der Formel \eqref{eq:phase_serie} -- wie oben schon erwähnt -- sehr große Fehler liefert:
+Die Resonanzfrequenz hängt nämlich nur von dem Produkt $LC$ ab.
+Wenn die Induktivität größer wäre, die Kapazität um den gleichen Faktor jedoch kleiner,  so ändert dies nichts an der Resonanzfrequenz.
+Der Widerstand $R$ bestimmt dann, wie schnell sich die Phasenverschiebung an die Extrema $\varphi=\pm\frac{\pi}{2}$ annähert.
 
 \bibliography{literatur}
 \bibliographystyle{babalpha}
