@@ -172,7 +172,7 @@ Versuchspartner: & Michael Lohmann\\
 
 \section{Einleitung}
 \label{sec:einleitung}
-Bei diesem Versuch sollen induktive und kapazitive Widerstände und die damit verbundene Phasenverschiebung zwischen Strom und Spannung untersucht werden.
+Bei diesem Versuch sollen neben ohmschen Widerständen induktive und kapazitive Widerstände und die damit verbundene Phasenverschiebung zwischen Strom und Spannung bei Wechselstrom untersucht werden.
 %bla bla
 
 \section{Theorie}
@@ -183,13 +183,30 @@ Bei dem heutzutage fast überall verwendeten \textit{Wechselstrom} verhalten sic
 	U(t)&=U_0\cdot\sin(\omega t)\,,\\
 	I(t)&=I_0\cdot\sin(\omega t-\varphi)\,.
 \end{align}
-Als \textit{Effektivwert} eines Wechselstroms bezeichnet man den Wert, bei dem bei Gleichstrom die gleich Leistung abgegeben würde.
+
+\subsubsection{Effektivwerte}
+Als \textit{Effektivwert} eines Wechselstroms bezeichnet man den Wert, bei dem bei Gleichstrom die gleiche Leistung abgegeben würde.
 Für eine Sinus-förmige Spannung der Amplitude $U_0$ ergibt sich somit
 \begin{align}
 	U_\text{eff}=\sqrt{\frac{1}{2}}\cdot U_0 \,.
 \end{align}
 Analoges gilt für den Strom.
 Vom Multimeter, welches Wechselstrom misst, wird der Effektivwert und nicht die Amplitude der Messgröße angezeigt.
+
+\subsubsection{Impedanz und Scheinwiderstand}
+Für die folgende Rechnung ist es nützlich, die komplexe Schreibweise $U(t)=U_0 \, e^{i\omega t}$ und $I(t)=I_0 \, e^{i(\omega t - \varphi)}$ zu verwenden.
+Als Impedanz bezeichnet man das Verhältnis
+\begin{align}
+	Z=\frac{U(t)}{I(t)}=\frac{U_0}{I_0}\cdot e^{i\varphi}\,.
+\end{align}
+Ihr Betrag ist der Scheinwiderstand $|Z|=\frac{U_0}{I_0}=\frac{U_\text{eff}}{I_\text{eff}}$.
+
+\subsection{Ohmscher Widerstand}
+Bei einem ohmschen Widerstand $R$ gilt immer
+\begin{align}
+	U(t)=R \cdot I(t)\,.
+\end{align}
+Strom und Spannung sind also in Phase.
 
 \subsection{Kapazitiver Widerstand}
 Ein Kondensator mit der Kapazität $C$, an dem die Spannung $U$ anliegt, trägt die Ladung $Q=C\cdot U$.
@@ -198,7 +215,7 @@ Für eine Wechselspannung $U_0\sin(\omega t)$ ergibt sich aus der zeitlichen Abl
 	I(t)=\omega C\cdot U_0\cdot \cos(\omega t)=\omega C\cdot U_0\cdot\sin\left(\omega t+\frac{\pi}{2}\right)\,.
 \end{align}
 Man erkennt, dass der Strom der Spannung voraus eilt und die Phasenverschiebung $\varphi=-\frac{\pi}{2}$ beträgt.
-Über die komplexe Schreibweise $U(t)=U_0 \, e^{i\omega t}$ und $I(t)=I_0 \, e^{i(\omega t - \varphi)}$ lässt sich der komplexe Widerstand
+Über die komplexe Schreibweise lässt sich der \textit{Blindwiderstand}
 \begin{align}
 	X_C=\frac{U}{I}= \frac{U_0}{\omega C \cdot U_0}\, e^{-i\frac{\pi}{2}}=-i\frac{1}{\omega C}
 \end{align}
@@ -219,18 +236,18 @@ Außerdem ist $X_L$ größer, je größer die Frequenz $\omega$ des Wechselstrom
 
 Außerdem besitzen Spulen meist einen nicht zu vernachlässigenden ohmschen Widerstand $R_L$, da sie aus sehr langem Draht bestehen.
 
-\subsection{Impedanz und Zeigerdiagramm}
-Als Impedanz bezeichnet man die Summe aus ohmschem, kapazitivem sowie induktivem Widerstand
+\subsection{RLC-Serienschaltung}
+Schaltet man einen ohmschen Widerstand $R$, eine Spule mit der Induktivität $L$ und einen Kondensator mit der Kapazität $C$ in Reihe ist die Impedanz die Summe aus ohmschem, kapazitivem sowie induktivem Widerstand
 \begin{align}
 	Z=R+X_C+X_L \,.
 \end{align}
-Der Betrag der Impedanz ist der Scheinwiderstand
+Der Scheinwiderstand beträgt folglich
 \begin{align}
 	|Z|=\sqrt{R^2+\left(\omega L - \frac{1}{\omega C}\right)^2} \,.
 	\label{eq:Scheinwiderstand_serie}
 \end{align}
-Außerdem kann man alle drei Widerstände in ein Zeigerdiagramm einzeichnen.
-Dabei ist der ohmsche Widerstand auf der reelen Achse und die beiden Blindwiderstände auf der imaginären.
+Außerdem kann man alle drei Widerstände in die komplexe Ebene einzeichnen.
+Dabei ist der ohmsche Widerstand auf der reelen Achse und die beiden Blindwiderstände auf der imaginären Achse.
 Addiert man alle, ergibt sich die Impedanz.
 Der Winkel zwischen $Z$ und der reelen Achse ist die Phasenverschiebung $\phi$ zwischen Spannung und Strom 
 Sie kann also mit der Formel 
@@ -240,7 +257,7 @@ Sie kann also mit der Formel
 \end{align}
 berechnet werden.
 
-Bei der Resonanzfrequenz $\omega_R$ ist der Scheinwiderstand am geringsten, die Blindwiderstände heben sich nämlich auf: $\omega_R L=\frac{1}{\omega_R C}$.
+Bei der \textbf{Resonanzfrequenz} $\omega_R$ ist der Scheinwiderstand am geringsten, die Blindwiderstände heben sich nämlich auf: $\omega_R L=\frac{1}{\omega_R C}$.
 Daraus folgt:
 \begin{align}
 	\omega_R&=\sqrt{\frac{1}{LC}}
@@ -267,7 +284,7 @@ als Scheinwiderstand.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.8]{serie.png}
-	\caption{Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
+	\caption{RLC-Serienschaltung \cite[Datum: 03.10.14]{LP14}.}
 	\label{fig:serie}
 \end{figure}
 
@@ -292,7 +309,7 @@ Dabei sollen möglichst viele Messungen in der Nähe der Resonanzfrequenz $\omeg
 
 Als nächstes wird die Schaltung nach Abb. \eqref{fig:parallel} zu einem \textbf{Parallelkreis} aus Spule und Kondensator umgebaut.
 Wieder wird die Spannung und der Strom in Abhängigkeit der Frequenz gemessen.
-Hier liegt der Fokus wie zuvor auf der Resonanzfrequenz.\\
+Auch hier liegt der Fokus auf der Resonanzfrequenz.\\
 
 Zum Schluss misst man mit dem Multimeter den Innenwiderstand des Amperemeters und den einzelnen ohmschen Widerstand $R_\Omega$ sowie $R_L$ der Spule.
 Außerdem werden die Kapazität des Kondensators gemessen und die Spulendaten notiert. 
@@ -317,6 +334,7 @@ So erhält man aus $m = (0.1493 \pm 0.0005)\,\si{\ohm^2\per\hertz^2}$ und $b = (
 	R&=(77.3 \pm 1.1)\,\si{\ohm}\,.
 \end{align*}
 \subsection{RLC-Serienschaltung}
+\subsubsection{Scheinwiderstand}
 \begin{figure}[!htb]
 	\centering
 	\input{messung2.tex}
@@ -344,16 +362,16 @@ Man erhält:
 %\begin{align}
 %	\overline L&=(386.2 \pm 0.6)\si{\milli\henry}
 %\end{align}
-
+\subsubsection{Phasenverschiebung}
 \begin{figure}[!htb]
 	\centering
 	\input{phase.tex}
 	\caption{Phasenverschiebung des Serienresonanzkreises.}
 	\label{fig:phase}
 \end{figure}
-Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der \textbf{Phasenverschiebung} aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die dreimal so groß sind wie der eigentliche Wert.
+Das Programm \textit{Gnuplot} liefert bei dem Theorie-Fit der Phasenverschiebung aus Formel \eqref{eq:phase_serie} für die drei Parameter $R$, $L$ und $C$ Fehler, die 30 mal so groß sind wie der eigentliche Wert.
 Um dies zu beheben, setzt man den Wert für den Widerstand fest und fittet nur die anderen beiden Parameter.
-Dabei wird der Mittelwert $\overline R&=(80.2836 \pm 0.455183)\,\si{\ohm}$ aus den beiden obigen Werten verwendet.
+Dabei wird der Mittelwert $\overline R&=(80.3 \pm 0.5)\,\si{\ohm}$ aus den beiden obigen Werten verwendet.
 Man erhält
 \begin{align*}
 	C &= (1.80 \pm 0.24)\,\si{\micro\farad}\qquad \text{und}\\
@@ -378,7 +396,7 @@ Man erhält
 \begin{empheq}[box=\shadowbox*]{align*}
 	\omega_R&=(1200 \pm 120)\,\si\hertz \,.
 \end{empheq}
-
+\subsubsection{Teilspannungen}
 \begin{figure}[!htb]
 	\centering
 	\input{spannungen.tex}
@@ -388,7 +406,12 @@ Man erhält
 Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}), fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
 Außerdem ist dieses gleich groß.
 Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerstand aufheben.
-
+\begin{figure}
+	\centering	
+	\adjustbox{height=0.4\textheight}{\input{SpannungenZeiger.pdf_tex}}
+	\caption{Zeigerdiagramm der Spannungen $U$, $U_C$ und $U_{L+R}$ der Serienschaltung bei der Resonanzfrequenz}
+\end{figure}
+$\varphi=80^\circ$
 \subsection{Parallelkreis}
 \begin{figure}[!htb]
 	\centering
@@ -399,11 +422,11 @@ Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerst
 In Abbildung \eqref{fig:messung3} ist der Scheinwiderstand des Parallelkreises gegen die Frequenz aufgetragen.
 Der Fit der Theoriekurve \eqref{eq:parallel} liefert 
 \begin{align*}
-	R_L &= (68\pm 5)\,\si{\kilo\ohm}\,,\\
+	R_L &= (68\pm 5)\,\si{\ohm}\,,\\
 	L &= (370 \pm 10)\,\si{\milli\henry}\qquad \text{und}\\
 	C &= (1.88  \pm 0.05)\, \si{\micro\farad}\,.
 \end{align*}
-Daraus ergibt sich mit \eqref{eq:omega_R} und \eqref{eq:omega_R_fehler} die Resonanzfrequenz
+Daraus ergibt sich mit \eqref{eq:omega_R} und \eqref{eq:omega_R_fehler} die Resonanzfrequenz des Serienschwingkreises
 \begin{empheq}[box=\shadowbox*]{align*}
 	\omega_R&=(1199 \pm 23)\,\si\hertz \,.
 \end{empheq}
@@ -411,6 +434,10 @@ Daraus ergibt sich mit \eqref{eq:omega_R} und \eqref{eq:omega_R_fehler} die Reso
 
 \section{Diskussion}
 \label{sec:diskussion}
+\subsection{Ohmscher Widerstand}
+\subsection{Induktivität}
+\subsection{Kapazität}
+\subsection{Resonanzfrequenz}
 
 \bibliography{literatur}
 \bibliographystyle{babalpha}

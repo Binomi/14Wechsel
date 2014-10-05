@@ -17,7 +17,8 @@ fit f(x) 'messung2.dat' u (2*pi*$1/1000):($6/180*pi):(pi/90) via C,L
 fit [2*pi/1000*160:2*pi/1000*220] g(x) 'messung2.dat' u (2*pi*$1/1000):($6/180*pi):(pi/90) via m,b
 
 
-p 'messung2.dat' u (2*pi*$1/1000):($6/180*pi):(pi/90) w e t'Messwerte', f(x) t'Theoriekurve nach \eqref{eq:phase_serie}', g(x) t 'linearer Fit um $\omega_R$'
+p 'messung2.dat' u (2*pi*$1/1000):($6/180*pi):(pi/90) w e t'Messwerte', f(x) lt -1 t'Theoriekurve nach Formel \eqref{eq:phase_serie}', g(x) lt -1 lc 3 t 'linearer Fit um $\omega_R$' 
+
 
 set output
 !epstopdf phase.eps

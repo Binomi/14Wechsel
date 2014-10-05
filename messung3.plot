@@ -13,7 +13,7 @@ set fit logfile 'messung3.log'
 #fit f(x) 'messung3.dat' u (2*pi*$1/1000):($2/$3):(sqrt((0.01/$3)**2+(0.02*$2/$3)**2)) via R,L,C
 fit f(x) 'messung3.dat' u (2*pi*$1/1000):($2/$3):(sqrt((0.01/$3)**2+(0.02*$2/$3)**2)) via R,L,C
 p 'messung3.dat' u (2*pi*$1/1000):($2/$3):(sqrt((0.01/$3)**2+(0.02*$2/$3)**2)) w e t'Messwerte',\
-f(x) t'Fit' 
+f(x) lt -1 t'Fit nach Formel \eqref{eq:parallel}' 
 
 set output
 !epstopdf messung3.eps
