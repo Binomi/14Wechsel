@@ -358,10 +358,6 @@ Man erhält:
 \begin{empheq}[box=\shadowbox*]{align*}
 	\omega_R&=(1199.9 \pm 2.3)\,\si\hertz \,.
 \end{empheq}
-%Mittelwerte aus allen Daten:
-%\begin{align}
-%	\overline L&=(386.2 \pm 0.6)\si{\milli\henry}
-%\end{align}
 \subsubsection{Phasenverschiebung}
 \begin{figure}[!htb]
 	\centering
@@ -404,14 +400,32 @@ Man erhält
 	\label{fig:teilU}
 \end{figure}
 Trägt man die Teilspannungen $U_C$ und $U_{L+R}$ in Abhängigkeit der Frequenz auf (Abb. \ref{fig:teilU}), fällt auf, dass beide ihr Maximum bei der Resonanzfrequenz haben.
-Außerdem ist dieses gleich groß.
+Außerdem ist dieses in etwa gleich groß.
 Dies war zu erwarten, da sich dort kapazitiver Widerstand und induktiver Widerstand aufheben.
+Dies kann man auch in der Abbildung \eqref{fig:zeigerU} erkennen.
+Dort sind die Spannungen $U_C$ und $U_{L+R}$ sowie die Gesamtspannung $U$ maßstabsgetreu eingezeichnet, welche sich bei der Resonanzfrequenz ergeben.
+Dazu werden die Messwerte bei einer gemessenen Phasenverschiebung von $1^\circ$ verwendet: $U=9.26\,$V, $U_C=52.9\,$V und $U_{L+R}=53.4\,$V. 
+Der eingezeichnete Winkel $\varphi=\arccos\left(\frac{U}{U_{L+R}}\right)=80^\circ=1.396\,$rad ist die Phasenverschiebung zwischen $U_{L+R}$ und dem Strom $I$, da dieser bei $\omega_R$ mit $U$ in Phase ist.
+Da hier kein kapazitiver Widerstand vorhanden ist, kann man diese Verschiebung auch mit der Formel \eqref{eq:phase_serie} ausrechnen. Dazu wird $C=0$ gesetzt:
+\begin{align}
+	\varphi=\arctan\left(\frac{\omega_R L}{R}\right)\,.
+\end{align}
+Da alle drei Größen fehlerbehaftet sind, folgt mit der Gauss'schen Fehlerfortpflanzung
+\begin{align}	
+	\sigma_{\varphi}=\frac{1}{(L \omega_R)^{2} + R^{2}} \cdot \sqrt{(LR)^{2}\, \sigma_{\omega_R}^{2} + (L \omega_R)^{2}\,\sigma_{R}^{2}  + (R \omega_R)^{2}\,\sigma_{L}^{2}}\,.
+\end{align}
+Für die gewichteten Mittelwerte $\overline{\omega_R}=(1199.9\pm 2.3)\,\si\hertz$, $\overline{R}=(80.3 \pm 0.5)\,\si\ohm$ und $\overline{L}=(386.2 \pm 0.6)\,\si{\milli\henry}$ aus den obigen Berechnungen ergibt sich eine Phasenverschiebung von
+\begin{align*}
+	\varphi=(1.399 \pm 0.001)\,\si{rad}\,.
+\end{align*}
+
 \begin{figure}
 	\centering	
 	\adjustbox{height=0.4\textheight}{\input{SpannungenZeiger.pdf_tex}}
 	\caption{Zeigerdiagramm der Spannungen $U$, $U_C$ und $U_{L+R}$ der Serienschaltung bei der Resonanzfrequenz}
+	\label{fig:zeigerU}
 \end{figure}
-$\varphi=80^\circ$
+
 \subsection{Parallelkreis}
 \begin{figure}[!htb]
 	\centering
