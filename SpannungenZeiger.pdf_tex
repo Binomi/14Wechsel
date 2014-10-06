@@ -53,6 +53,6 @@
     \put(0.15597678,0.28561801){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\varphi$}}}%
     \put(0.31576166,0.00509545){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$U$}}}%
     \put(0.89177677,2.12605307){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$U_C$}}}%
-    \put(0.11159516,2.47478172){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$U_{L+R}$}}}}%
+    \put(0.11159516,2.47478172){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$U_{L+R}$}}}%
   \end{picture}%
 \endgroup%
